@@ -18,13 +18,17 @@
 {% endrow %} {# </div> #}
 
 <hr />
-<hr />
+
 
 {% row %}
     {% col %}
         {% recent_posts post %}
     {% endcol %}
 {% endrow %}
+
+<hr />
+
+{% include "blog/post-comments.html" %}
 
 
 {% endblock %}
