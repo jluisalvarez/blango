@@ -47,6 +47,30 @@ class Dev(Configuration):
     SESSION_COOKIE_SAMESITE = 'None'
 
 
+    # Logging Configuration 
+
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+                "style": "{",
+            },
+        },        
+        "handlers": {
+            "console": {"class": "logging.StreamHandler", 
+                "stream": "ext://sys.stdout",
+                "formatter": "verbose",},
+            # "file": {"class": "logging.FileHandler", "filename": "/var/log/blango.log"},
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        }
+    }
+
+
     # Application definition
 
     INSTALLED_APPS = [
