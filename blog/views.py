@@ -11,6 +11,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])
+
 #@cache_page(300)
 #@vary_on_cookie
 def index(request):

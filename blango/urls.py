@@ -13,8 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+import debug_toolbar
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from blog import views as blog_views
 
@@ -22,8 +25,17 @@ from blog import views as blog_views
 # print(f"Time zone: {settings.TIME_ZONE}")
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog_views.index),
-    path("post/<slug>/", blog_views.post_detail, name="blog-post-detail")
+    path("post/<slug>/", blog_views.post_detail, name="blog-post-detail"),
+    path("ip/", blog_views.get_ip)
 ]
+
+
+# URLS para usar Django Debug Toolbar
+if settings.DEBUG:
+    urlpatterns += [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ]
